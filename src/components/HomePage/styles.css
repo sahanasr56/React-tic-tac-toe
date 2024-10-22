@@ -22,4 +22,6 @@ body{
     width: 18vmin;
     height: 18vmin;
     background-color: cadetblue;
+    border: none;
+    border-radius: 20px;
 }
