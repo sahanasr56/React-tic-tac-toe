@@ -4,10 +4,11 @@ import "./styles.css";
 interface BoxProps{
 value:string
 onClick:()=>void
+isDisabled:boolean
 }
 
 export const Box: React.FC<BoxProps>=(props)=>{
     return(
-        <div className="box" onClick={props.onClick}>{props.value}</div>
+        <button className="box" onClick={props.onClick} disabled={props.isDisabled}>{props.value}</button>
     )
 }
