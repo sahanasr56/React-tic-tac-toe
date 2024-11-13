@@ -13,6 +13,23 @@ export const HomePage: React.FC=()=>{
         console.log(stateCopy)
         setCurrentTurn(currentTurn==="X"?"O":"X")
         setState(stateCopy);
+        checkResult(stateCopy);
+    }
+
+    let winList=[[0,4,8],[0,1,2],[0,3,6],[1,4,7],[2,5,8],[2,4,6],[3,4,5],[6,7,8]];
+    const checkResult=(arr:Array<string>)=>{
+        for(let i=0;i<winList.length;i++){
+            let pos1=arr[winList[i][0]]
+            let pos2=arr[winList[i][1]]
+            let pos3=arr[winList[i][2]]
+
+            if(pos1!=null && pos2!=null && pos3!=null){
+                if (pos1===pos2 && pos2===pos3){
+                    console.log("You win!")
+                }
+            }
+
+        }
     }
 
     return(
