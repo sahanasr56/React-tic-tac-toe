@@ -7,6 +7,7 @@ export const HomePage: React.FC=()=>{
 
     const [state, setState]=useState(Array(9).fill(null));
     const [currentTurn, setCurrentTurn]=useState("X");
+    const [win, setWin]=useState(false);
     const handleOnClick=(index:number)=>{
         const stateCopy=Array.from(state);
         stateCopy[index]=currentTurn;
@@ -25,7 +26,7 @@ export const HomePage: React.FC=()=>{
 
             if(pos1!=null && pos2!=null && pos3!=null){
                 if (pos1===pos2 && pos2===pos3){
-                    console.log("You win!")
+                    setWin(true);
                 }
             }
 
@@ -35,6 +36,7 @@ export const HomePage: React.FC=()=>{
     return(
         <>
         <h2>Tic Tac Toe</h2>
+                {win && <h3>You Won!!</h3>}
         <div className="container">
             <div className="wrapper">
                 <Box value={state[0]} onClick={()=>handleOnClick(0)} isDisabled={state[0]!=null?true:false}/>
