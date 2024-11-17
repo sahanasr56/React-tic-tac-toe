@@ -7,6 +7,7 @@ export const HomePage: React.FC=()=>{
     const [state, setState]=useState(Array(9).fill(null));
     const [currentTurn, setCurrentTurn]=useState("X");
     const [win, setWin]=useState(false);
+    const [draw, setDraw]=useState(false);
     const handleOnClick=(index:number)=>{
         const stateCopy=Array.from(state);
         stateCopy[index]=currentTurn;
@@ -17,7 +18,11 @@ export const HomePage: React.FC=()=>{
     }
 
     let winList=[[0,4,8],[0,1,2],[0,3,6],[1,4,7],[2,5,8],[2,4,6],[3,4,5],[6,7,8]];
-    const checkResult=(arr:Array<string>)=>{
+    const checkResult=(arr:Array<string|null>)=>{
+        console.log(arr);
+        if (!arr.includes(null)){
+            setDraw(true)
+        }
         for(let i=0;i<winList.length;i++){
             let pos1=arr[winList[i][0]]
             let pos2=arr[winList[i][1]]
@@ -36,6 +41,7 @@ export const HomePage: React.FC=()=>{
         <>
         <h2>Tic Tac Toe</h2>
                 {win && <h3>You Won!!</h3>}
+                {draw && <h3>Game Draw</h3>}
         <div className="container">
             <div className="wrapper">
                 <Box value={state[0]} onClick={()=>handleOnClick(0)} isDisabled={state[0]!=null || win ?true:false}/>
