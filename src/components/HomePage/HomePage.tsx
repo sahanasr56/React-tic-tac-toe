@@ -8,6 +8,8 @@ export const HomePage: React.FC=()=>{
     const [currentTurn, setCurrentTurn]=useState("X");
     const [win, setWin]=useState(false);
     const [draw, setDraw]=useState(false);
+    const [count, setCount]=useState(1);
+    let isWin=false;
     const handleOnClick=(index:number)=>{
         const stateCopy=Array.from(state);
         stateCopy[index]=currentTurn;
@@ -19,10 +21,9 @@ export const HomePage: React.FC=()=>{
 
     let winList=[[0,4,8],[0,1,2],[0,3,6],[1,4,7],[2,5,8],[2,4,6],[3,4,5],[6,7,8]];
     const checkResult=(arr:Array<string|null>)=>{
-        console.log(arr);
-        if (!arr.includes(null)){
-            setDraw(true)
-        }
+        console.log(count)          
+        setCount(count+1)
+        console.log(count)
         for(let i=0;i<winList.length;i++){
             let pos1=arr[winList[i][0]]
             let pos2=arr[winList[i][1]]
@@ -30,11 +31,12 @@ export const HomePage: React.FC=()=>{
 
             if(pos1!=null && pos2!=null && pos3!=null){
                 if (pos1===pos2 && pos2===pos3){
+                    isWin=true
                     setWin(true);
                 }
             }
-
         }
+        setDraw(count===9 && !isWin?true:false)
     }
 
     return(
