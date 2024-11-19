@@ -9,6 +9,7 @@ export const HomePage: React.FC=()=>{
     const [win, setWin]=useState(false);
     const [draw, setDraw]=useState(false);
     const [count, setCount]=useState(1);
+    const [value, setValue]=useState("");
     let isWin=false;
     const handleOnClick=(index:number)=>{
         const stateCopy=Array.from(state);
@@ -21,9 +22,7 @@ export const HomePage: React.FC=()=>{
 
     let winList=[[0,4,8],[0,1,2],[0,3,6],[1,4,7],[2,5,8],[2,4,6],[3,4,5],[6,7,8]];
     const checkResult=(arr:Array<string|null>)=>{
-        console.log(count)          
         setCount(count+1)
-        console.log(count)
         for(let i=0;i<winList.length;i++){
             let pos1=arr[winList[i][0]]
             let pos2=arr[winList[i][1]]
@@ -32,6 +31,7 @@ export const HomePage: React.FC=()=>{
             if(pos1!=null && pos2!=null && pos3!=null){
                 if (pos1===pos2 && pos2===pos3){
                     isWin=true
+                    setValue(pos1)
                     setWin(true);
                 }
             }
@@ -42,7 +42,7 @@ export const HomePage: React.FC=()=>{
     return(
         <>
         <h2>Tic Tac Toe</h2>
-                {win && <h3>You Won!!</h3>}
+                {win && <h3>"{value}" Won!!</h3>}
                 {draw && <h3>Game Draw</h3>}
         <div className="container">
             <div className="wrapper">
