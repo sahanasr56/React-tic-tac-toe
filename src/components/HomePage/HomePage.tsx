@@ -30,13 +30,24 @@ export const HomePage: React.FC=()=>{
 
             if(pos1!=null && pos2!=null && pos3!=null){
                 if (pos1===pos2 && pos2===pos3){
-                    isWin=true
+                    isWin=true;
                     setValue(pos1)
                     setWin(true);
                 }
             }
         }
         setDraw(count===9 && !isWin?true:false)
+    }
+
+    const newGame=()=>{
+        const newStateCopy=Array(9).fill(null);
+        setState(newStateCopy);
+        setCurrentTurn("X");
+        setWin(false);
+        setDraw(false);
+        setCount(1);
+        setValue("");
+        isWin=false;
     }
 
     return(
@@ -57,6 +68,7 @@ export const HomePage: React.FC=()=>{
                 <Box value={state[8]} onClick={()=>handleOnClick(8)} isDisabled={state[8]!=null || win ?true:false}/>
             </div>
         </div>
+        {(win || draw) && <button className="new" onClick={newGame}>New Game</button>}
         </>
     )
 }

@@ -17,3 +17,13 @@ body{
     flex-wrap: wrap;
     gap: 20px;
 }
+
+.new{
+    background-color: rgb(2, 31, 32);
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    color: white;
+    padding: 10px;
+    margin-top: 30px;
+}
